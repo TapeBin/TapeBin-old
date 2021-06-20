@@ -15,7 +15,7 @@ const Navbar = () => {
                     fontSize={[30, 40]}
                     fontWeight="regular"
                     textAlign="center">
-                    Tape
+                    Tapebin
                 </Heading>
             </Flex>
 
