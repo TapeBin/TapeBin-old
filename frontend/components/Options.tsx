@@ -22,7 +22,8 @@ const Options = () => {
                 display={["block", "block", "block", "block", "none"]}
                 w="100%"
                 h={isOpen ? "300px" : "40px"}
-                bg="red"
+                bg="#444444"
+                color="white"
             >
                 <Box
                     display={isOpen ? "block" : "none"}
