@@ -5,23 +5,26 @@ const Navbar = () => {
 
     return (
         <Flex backgroundColor="#232323" justifyContent="space-between" width="100%" color="white" align="center"
-              padding={4} paddingX={[3, 20]} textAlign="center">
+              padding={4} paddingX={["6%", 10, 20]} textAlign="center">
 
             <Flex align="center">
                 <Heading
                     as="h1"
                     size="lg"
                     fontFamily="Pacifico, sans-serif"
-                    fontSize={[30, 40]}
+                    fontSize={[25, 40]}
                     fontWeight="regular"
                     textAlign="center">
                     Tape
                 </Heading>
             </Flex>
 
-            <Stack direction="row-reverse" alignItems="center" spacing={[2, 4]} fontFamily="Poppins, sans-serif"
-                   fontWeight="regular">
-                <Image src="avatar.svg" boxSize={[39, 41]}/>
+            <Stack
+                direction="row-reverse"
+                alignItems="center" spacing={[2, 4]}
+                fontFamily="Poppins, sans-serif"
+            >
+                <Image src="avatar.svg" boxSize={["33px", 41]}/>
                 <Button
                     borderRadius={3}
                     border="3px solid transparent"
@@ -29,6 +32,7 @@ const Navbar = () => {
                     bg="transparent"
                     transition="none"
                     fontWeight="regular"
+                    fontSize={[12, 16]}
                     _hover={{ bg: "transparent", border: "3px solid rgba(68, 68, 68, 1)" }}
                     _active={{ bg: "transparent", border: "3px solid rgba(68, 68, 68, 1)" }}
                     _focus={{ border: "3px solid transparent" }}
@@ -43,6 +47,7 @@ const Navbar = () => {
                     bg="transparent"
                     transition="none"
                     fontWeight="regular"
+                    fontSize={[12, 16]}
                     _hover={{ bg: "transparent", border: "3px solid rgba(68, 68, 68, 1)" }}
                     _active={{ bg: "transparent", border: "3px solid rgba(68, 68, 68, 1)" }}
                     _focus={{ border: "3px solid transparent" }}
