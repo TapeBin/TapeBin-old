@@ -54,7 +54,6 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                     h="570px"
                     top="10em"
                     right="4em"
-                    zIndex={99999}
                     borderRadius={6}
                     bg="#232323"
                     color="white">

@@ -21,6 +21,12 @@ a {
     box-sizing: border-box;
 }
 
+.chakra-slide {
+    top: initial !important;
+    bottom: initial !important;
+    z-index: 1;
+}
+
 #ace-editor {
     width: 100% !important;
     height: 100% !important;
