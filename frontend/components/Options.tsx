@@ -113,7 +113,7 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                     </Stack>
                 </Box>
 
-                <ArrowDownIcon onClick={() => setOpen(!isMobileOpen)} ml="50%" mr="50%" transform={isMobileOpen ? "rotate(180deg)" : ""}/>
+                <ArrowDownIcon onClick={() => setOpen(!isMobileOpen)} ml="50%" mr="50%" mb={3} mt={3} transform={isMobileOpen ? "rotate(180deg)" : ""}/>
                 {/*<CButton onClick={() => setOpen(!isMobileOpen)}>{isOpen ? "Close" : "Open"}</CButton>*/}
             </Box>
         </>
