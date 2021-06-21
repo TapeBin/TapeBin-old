@@ -32,6 +32,15 @@ const Button = styled.button`
   }
 `;
 
+export const Arrow = styled.img`
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  width: 30px;
+  cursor: pointer;
+  color: #979797;
+`;
+
 type OptionsProps = {
     hasId: boolean
 }
@@ -59,6 +68,7 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                     color="white">
                     <Image src="minus.svg" onClick={onToggle} cursor="pointer" position="absolute" right="15px"
                            top="20px" w="25px"/>
+                    <Arrow src="arrow.svg" onClick={onToggle}/>
 
                     <Flex direction="column" w={80} m="0 auto">
                         <Text fontFamily="Poppins, sans-serif" fontWeight="700" fontSize={25} mt="30px" color="rgb(226, 226, 226);">Bin Options</Text>
