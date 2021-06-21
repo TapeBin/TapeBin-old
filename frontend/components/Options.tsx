@@ -62,7 +62,7 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                            top="20px" w="25px"/>
 
                     <Flex direction="column" w={80} m="0 auto">
-                        <Text fontFamily="Poppins, sans-serif" fontWeight="700" fontSize={25} mt="30px" mb="5px" color="rgb(226, 226, 226);">Bin Options</Text>
+                        <Text fontFamily="Poppins, sans-serif" fontWeight="700" fontSize={25} mt="30px" color="rgb(226, 226, 226);">Bin Options</Text>
 
                         <Input placeholder="Title" disabled={props.hasId}/>
                         <TextBox placeholder="Description" disabled={props.hasId}/>
