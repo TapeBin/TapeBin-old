@@ -1,11 +1,11 @@
 import React from "react";
-import { Avatar, Box, Button, Flex, Heading, Image, Stack } from "@chakra-ui/react";
+import { Button, Flex, Heading, Image, Stack } from "@chakra-ui/react";
 
 const Navbar = () => {
 
     return (
         <Flex backgroundColor="#232323" justifyContent="space-between" width="100%" color="white" align="center"
-              padding={4} paddingX={["6%", 10, 20]} textAlign="center">
+              padding={4} paddingX={["6%", 10, 20]} textAlign="center" zIndex={99999999}>
 
             <Flex align="center">
                 <Heading
