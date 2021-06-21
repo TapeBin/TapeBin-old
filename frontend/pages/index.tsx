@@ -8,7 +8,7 @@ const Index = (props: any) => {
     return (
         <Flex flexDirection="column" height="100vh" width="100vw" position="relative">
             <Navbar/>
-            <Options/>
+            <Options hasId={false}/>
         </Flex>
     );
 }
