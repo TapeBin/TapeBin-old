@@ -8,15 +8,16 @@ const Navbar = () => {
               padding={4} paddingX={["6%", 10, 20]} textAlign="center" zIndex={99999999}>
 
             <Flex align="center">
-                <Heading
-                    as="h1"
-                    size="lg"
-                    fontFamily="Pacifico, sans-serif"
-                    fontSize={[25, 40]}
-                    fontWeight="regular"
-                    textAlign="center">
-                    Tape
-                </Heading>
+                {/*<Heading*/}
+                {/*    as="h1"*/}
+                {/*    size="lg"*/}
+                {/*    fontFamily="Pacifico, sans-serif"*/}
+                {/*    fontSize={[25, 40]}*/}
+                {/*    fontWeight="regular"*/}
+                {/*    textAlign="center">*/}
+                {/*    Tape*/}
+                {/*</Heading>*/}
+                <Image src="logo.svg" w={["50px", "80px"]}/>
             </Flex>
 
             <Stack
