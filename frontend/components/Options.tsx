@@ -4,6 +4,7 @@ import Input from "./Input";
 import TextBox from "./TextBox";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
+import { ArrowDownIcon } from "@chakra-ui/icons";
 
 const SelectSearch = dynamic(() => import("./Select"), { ssr: false });
 
@@ -71,7 +72,8 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                     <Arrow src="arrow.svg" onClick={onToggle}/>
 
                     <Flex direction="column" w={80} m="0 auto">
-                        <Text fontFamily="Poppins, sans-serif" fontWeight="700" fontSize={25} mt="30px" color="rgb(226, 226, 226);">Bin Options</Text>
+                        <Text fontFamily="Poppins, sans-serif" fontWeight="700" fontSize={25} mt="30px"
+                              color="rgb(226, 226, 226);">Bin Options</Text>
 
                         <Input placeholder="Title" disabled={props.hasId}/>
                         <TextBox placeholder="Description" disabled={props.hasId}/>
@@ -90,21 +92,29 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
             <Box
                 display={["block", "block", "block", "block", "none"]}
                 w="100%"
-                h={isMobileOpen ? "300px" : "40px"}
-                bg="#444444"
+                h={isMobileOpen ? "600px" : "40px"}
+                bg="#232323"
                 color="white"
             >
-                <Box
-                    display={isMobileOpen ? "block" : "none"}
-                >
-                    <Stack alignItems="center" alignContent="center">
-                        <div>asdasdasd</div>
+                <Box display={isMobileOpen ? "block" : "none"}>
+                    <Stack w="80%" m="0 auto">
+                        <Text fontFamily="Poppins, sans-serif" fontWeight="700" fontSize={23} mt="13px"
+                              color="rgb(226, 226, 226);">Bin Options</Text>
+
+                        <Input placeholder="Title" disabled={props.hasId}/>
+                        <TextBox placeholder="Description" disabled={props.hasId}/>
+                        <BR/>
+                        <SelectSearch disabled={props.hasId}/>
+                        <Input placeholder="File name" disabled={props.hasId}/>
+                        <BR/>
+                        <Button disabled={props.hasId}>
+                            Save
+                        </Button>
                     </Stack>
-
-
                 </Box>
 
-                <CButton onClick={() => setOpen(!isMobileOpen)}>{isOpen ? "Close" : "Open"}</CButton>
+                <ArrowDownIcon onClick={() => setOpen(!isMobileOpen)} ml="50%" mr="50%" transform={isMobileOpen ? "rotate(180deg)" : ""}/>
+                {/*<CButton onClick={() => setOpen(!isMobileOpen)}>{isOpen ? "Close" : "Open"}</CButton>*/}
             </Box>
         </>
     );
