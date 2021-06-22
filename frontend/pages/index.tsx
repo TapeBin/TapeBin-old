@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Drawer, DrawerBody, DrawerContent, DrawerOverlay, Flex } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import Options from "../components/Options";
 import dynamic from "next/dynamic";

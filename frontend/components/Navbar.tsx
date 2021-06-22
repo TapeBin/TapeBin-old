@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Flex, Drawer, DrawerOverlay, DrawerBody, Image, Stack, useDisclosure, DrawerContent } from "@chakra-ui/react";
+import { Button, Flex, Image, Stack, useDisclosure, DrawerContent } from "@chakra-ui/react";
+import Settings from "./Settings";
 
 const Navbar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -65,17 +66,11 @@ const Navbar = () => {
                     </Button>
                 </Stack>
             </Flex>
-            <Drawer onClose={onClose} isOpen={isOpen} placement={"bottom"}>
-                <DrawerOverlay/>
-                {/*pt="80px"*/}
-                <DrawerContent bg="#232323" color="white" >
-                    <DrawerBody>
-                        Ur cool!
-                    </DrawerBody>
-                </DrawerContent>
-            </Drawer>
+
+            <Settings onClose={onClose} isOpen={isOpen}/>
+
         </>
     );
-}
+};
 
 export default Navbar;
