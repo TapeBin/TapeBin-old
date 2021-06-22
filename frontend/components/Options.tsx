@@ -56,10 +56,10 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
 
     return (
         <>
-            <Slide direction="right" in={isOpen} style={{ zIndex: 10, bottom: "initial !important"}}>
+            <Slide direction="right" in={isOpen} style={{ zIndex: 1, bottom: "initial !important"}}>
                 <Box
                     display={["none", "none", "none", "none", "block"]}
-                    position="fixed"
+                    position="absolute"
                     w="400px"
                     h="570px"
                     top="10em"

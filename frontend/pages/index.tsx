@@ -16,8 +16,6 @@ const Index = (props: any) => {
             <Options hasId={false}/>
             <DynamicEditor theme="one_dark"
                            language="bsl"/>
-            <div>
-            </div>
         </Flex>
     );
 }
