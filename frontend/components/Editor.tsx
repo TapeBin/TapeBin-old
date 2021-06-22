@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import AceEditor from "react-ace";
 import ace from "ace-builds/src-noconflict/ace";
+import { Box } from "@chakra-ui/react";
 
 ace.config.set("basePath", "ace/");
 
@@ -15,7 +16,7 @@ type EditorProps = {
 const Editor: FunctionComponent<EditorProps> = (props: EditorProps) => {
 
     return (
-        <div style={{ width: "100%", height: "100%", filter: props.style}}>
+        <Box style={{ width: "100%", height: "100%", filter: props.style}}>
             <AceEditor name="ace-editor"
                        value={props.value}
                        onChange={props.onChange}
@@ -30,7 +31,7 @@ const Editor: FunctionComponent<EditorProps> = (props: EditorProps) => {
                        mode={props.language}
                        readOnly={!!props.value}
             />;
-        </div>
+        </Box>
     );
 };
 

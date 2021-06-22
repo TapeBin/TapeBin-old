@@ -68,7 +68,7 @@ const Navbar = () => {
             <Drawer onClose={onClose} isOpen={isOpen} placement={"bottom"}>
                 <DrawerOverlay/>
                 {/*pt="80px"*/}
-                <DrawerContent bg="#232323" color="white">
+                <DrawerContent bg="#232323" color="white" >
                     <DrawerBody>
                         Ur cool!
                     </DrawerBody>
