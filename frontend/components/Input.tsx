@@ -30,7 +30,8 @@ type InputProps = {
     placeholder: string
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
     disabled?: boolean,
-    value?: string
+    value?: string,
+    width?: string
 };
 
 const Input: FunctionComponent<InputProps> = (props: InputProps) => {
@@ -41,6 +42,7 @@ const Input: FunctionComponent<InputProps> = (props: InputProps) => {
                 defaultValue={props.value}
                 onChange={props.onChange}
                 disabled={props.disabled}
+                style={{width: props.width}}
             />
         </>
     );

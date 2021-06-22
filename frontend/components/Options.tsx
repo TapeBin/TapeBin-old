@@ -6,7 +6,7 @@ import styled from "styled-components";
 import dynamic from "next/dynamic";
 import { ArrowDownIcon } from "@chakra-ui/icons";
 
-const SelectSearch = dynamic(() => import("./Select"), { ssr: false });
+const SelectSearch = dynamic(() => import("./SelectLanguage"), { ssr: false });
 
 // ~5px for consistency
 const BR = styled.br`
