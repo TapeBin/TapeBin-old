@@ -18,7 +18,7 @@ const Select = dynamic(() => import("./Select"), { ssr: false });
 
 export const setItem = (item: string, value: string) => {
     console.log(localStorage.getItem(item));
-    if(localStorage.getItem(item) === null) {
+    if (localStorage.getItem(item) === null) {
         localStorage.setItem(item, value);
     }
     return localStorage.getItem(item)!!;
@@ -28,7 +28,7 @@ export const settingsAtom = atom({
     theme: setItem("theme", "one_dark"),
     fontSize: setItem("fontSize", "15px"),
     fontFamily: setItem("fontFamily", "Fira Code"),
-    printMargin: false
+    printMargin: setItem("printMargin", "false") === "true"
 });
 
 type SettingsProps = {
@@ -66,8 +66,13 @@ const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
     }
 
     const changeFontSize = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSettings(prevSettings => ({ ...prevSettings, fontSize: `${event.target.value}px`}));
+        setSettings(prevSettings => ({ ...prevSettings, fontSize: `${event.target.value}px` }));
         localStorage.setItem("fontSize", `${event.target.value}px`);
+    }
+
+    const changePrintMargin = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSettings(prevSettings => ({ ...prevSettings, printMargin: event.target.checked }));
+        localStorage.setItem("printMargin", `${event.target.checked}`);
     }
 
     // const [state, setState] = useState("");
@@ -108,7 +113,12 @@ const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
                                    onChange={changeFontSize}/>
                         </Stack>
                         <Stack w="100%" minW="0 !important">
-                            <Input placeholder="Print margin" width="100%"/>
+                            <Input
+                                placeholder="Print margin"
+                                width="100%"
+                                type="checkbox"
+                                checked={settings.printMargin}
+                                onChange={changePrintMargin}/>
                         </Stack>
                     </Stack>
                     <br/>

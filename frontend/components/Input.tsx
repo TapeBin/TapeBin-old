@@ -34,7 +34,8 @@ type InputProps = {
     width?: string,
     type?: string | "text",
     min?: number,
-    max?: number
+    max?: number,
+    checked?: boolean
 };
 
 const Input: FunctionComponent<InputProps> = (props: InputProps) => {
@@ -49,6 +50,7 @@ const Input: FunctionComponent<InputProps> = (props: InputProps) => {
                 type={props.type}
                 min={props.min}
                 max={props.max}
+                checked={props.checked}
             />
         </>
     );
