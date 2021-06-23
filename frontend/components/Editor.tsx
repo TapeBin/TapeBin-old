@@ -4,6 +4,7 @@ import ace from "ace-builds/src-noconflict/ace";
 import { Box } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { settingsAtom } from "./Settings";
+import { binAtom } from "./Options";
 
 ace.config.set("basePath", "ace/");
 
@@ -17,6 +18,7 @@ type EditorProps = {
 
 const Editor: FunctionComponent<EditorProps> = (props: EditorProps) => {
     const [settings] = useAtom(settingsAtom);
+    const [bin] = useAtom(binAtom);
 
     return (
         <Box style={{ width: "100%", height: "100%", filter: props.style}}>
@@ -32,7 +34,7 @@ const Editor: FunctionComponent<EditorProps> = (props: EditorProps) => {
                            fontSize: settings.fontSize,
                            fontFamily: settings.fontFamily
                        }}
-                       mode={props.language}
+                       mode={bin.languageExtension}
                        readOnly={!!props.value}
             />;
         </Box>

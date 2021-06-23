@@ -35,7 +35,7 @@ type InputProps = {
     type?: string | "text",
     min?: number,
     max?: number,
-    checked?: boolean
+    checked?: boolean,
 };
 
 const Input: FunctionComponent<InputProps> = (props: InputProps) => {

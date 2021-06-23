@@ -5,6 +5,10 @@ import TextBox from "./TextBox";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
 import { ArrowDownIcon } from "@chakra-ui/icons";
+import { atom } from "jotai";
+import { useAtom } from "jotai";
+import { SelectedOptionValue } from "react-select-search";
+import linguist from "../utils/linguist.json";
 
 const SelectSearch = dynamic(() => import("./SelectLanguage"), { ssr: false });
 
@@ -46,7 +50,16 @@ type OptionsProps = {
     hasId: boolean
 }
 
+export const binAtom = atom({
+    title: "",
+    description: "",
+    languageId: 0,
+    languageExtension: "bsl",
+    fileName: ""
+});
+
 const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
+    const [bin, setBin] = useAtom(binAtom);
     const [isMobileOpen, setOpen] = useState(false);
     const { isOpen, onToggle } = useDisclosure();
 
@@ -54,11 +67,35 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
         if (!isOpen) onToggle()
     }, []);
 
+    const changeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setBin(prevState => ({ ...prevState, title: event.target.value }));
+    }
+
+    const changeDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setBin(prevState => ({ ...prevState, description: event.target.value }));
+    }
+
+    const changeLanguage = (selectedValue: SelectedOptionValue | SelectedOptionValue[]) => {
+        if (linguist.hasOwnProperty(selectedValue.toString())) {
+            // @ts-ignore
+            const extension = linguist[selectedValue.toString()];
+            setBin(prevState => ({
+                ...prevState,
+                languageId: parseInt(selectedValue.toString()),
+                languageExtension: extension.aceMode
+            }));
+        }
+    }
+
+    const changeFileName = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setBin(prevState => ({ ...prevState, fileName: event.target.value }));
+    }
+
     return (
         <>
-            <Slide direction="right" in={isOpen} style={{ zIndex: 1, bottom: "initial !important"}}>
+            <Slide direction="right" in={isOpen} style={{ zIndex: 1, bottom: "initial !important" }}>
                 <Box
-                    d={{base: "none", xl: "block"}}
+                    d={{ base: "none", xl: "block" }}
                     position="absolute"
                     w="400px"
                     h="570px"
@@ -75,11 +112,13 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                         <Text fontFamily="Poppins, sans-serif" fontWeight="700" fontSize={25} mt="30px"
                               color="rgb(226, 226, 226);">Bin Options</Text>
 
-                        <Input placeholder="Title" disabled={props.hasId}/>
-                        <TextBox placeholder="Description" disabled={props.hasId}/>
+                        <Input placeholder="Title" value={bin.title} onChange={changeTitle} disabled={props.hasId}/>
+                        <TextBox placeholder="Description" value={bin.description} onChange={changeDescription}
+                                 disabled={props.hasId}/>
                         <BR/>
-                        <SelectSearch disabled={props.hasId}/>
-                        <Input placeholder="File name" disabled={props.hasId}/>
+                        <SelectSearch disabled={props.hasId} value={bin.languageExtension} onChange={changeLanguage}/>
+                        <Input placeholder="File name" value={bin.fileName} onChange={changeFileName}
+                               disabled={props.hasId}/>
                         <BR/>
                         <Button disabled={props.hasId}>
                             Save
@@ -101,11 +140,13 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                         <Text fontFamily="Poppins, sans-serif" fontWeight="700" fontSize={23} mt="13px"
                               color="rgb(226, 226, 226);">Bin Options</Text>
 
-                        <Input placeholder="Title" disabled={props.hasId}/>
-                        <TextBox placeholder="Description" disabled={props.hasId}/>
+                        <Input placeholder="Title" value={bin.title} onChange={changeTitle} disabled={props.hasId}/>
+                        <TextBox placeholder="Description" value={bin.description} onChange={changeDescription}
+                                 disabled={props.hasId}/>
                         <BR/>
-                        <SelectSearch disabled={props.hasId}/>
-                        <Input placeholder="File name" disabled={props.hasId}/>
+                        <SelectSearch value={bin.languageExtension} disabled={props.hasId} onChange={changeLanguage}/>
+                        <Input placeholder="File name" value={bin.fileName} onChange={changeFileName}
+                               disabled={props.hasId}/>
                         <BR/>
                         <Button disabled={props.hasId}>
                             Save
@@ -113,7 +154,8 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                     </Stack>
                 </Box>
 
-                <ArrowDownIcon onClick={() => setOpen(!isMobileOpen)} ml="50%" mr="50%" mb={3} mt={3} transform={isMobileOpen ? "rotate(180deg)" : ""}/>
+                <ArrowDownIcon onClick={() => setOpen(!isMobileOpen)} ml="50%" mr="50%" mb={3} mt={3}
+                               transform={isMobileOpen ? "rotate(180deg)" : ""}/>
                 {/*<CButton onClick={() => setOpen(!isMobileOpen)}>{isOpen ? "Close" : "Open"}</CButton>*/}
             </Box>
         </>
