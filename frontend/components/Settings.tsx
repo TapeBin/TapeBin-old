@@ -16,10 +16,18 @@ import { SelectedOptionValue } from "react-select-search";
 
 const Select = dynamic(() => import("./Select"), { ssr: false });
 
+const setItem = (item: string, value: string) => {
+    console.log(localStorage.getItem(item));
+    if(localStorage.getItem(item) === null) {
+        localStorage.setItem(item, value);
+    }
+    return localStorage.getItem(item)!!;
+};
+
 export const settingsAtom = atom({
-    theme: "one_dark",
-    fontSize: "15px",
-    fontFamily: "Source Code Pro",
+    theme: setItem("theme", "one_dark"),
+    fontSize: setItem("fontSize", "15px"),
+    fontFamily: setItem("fontFamily", "Fira Code"),
     printMargin: false
 });
 
@@ -49,10 +57,12 @@ const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
 
     const changeFont = (selectedValue: SelectedOptionValue | SelectedOptionValue[]) => {
         setSettings(prevSettings => ({ ...prevSettings, fontFamily: selectedValue.toString() }));
+        localStorage.setItem("fontFamily", selectedValue.toString());
     }
 
     const changeTheme = (selectedValue: SelectedOptionValue | SelectedOptionValue[]) => {
         setSettings(prevSettings => ({ ...prevSettings, theme: selectedValue.toString() }));
+        localStorage.setItem("theme", selectedValue.toString());
     }
 
     // const [state, setState] = useState("");
