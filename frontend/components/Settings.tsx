@@ -16,7 +16,7 @@ import { SelectedOptionValue } from "react-select-search";
 
 const Select = dynamic(() => import("./Select"), { ssr: false });
 
-const setItem = (item: string, value: string) => {
+export const setItem = (item: string, value: string) => {
     console.log(localStorage.getItem(item));
     if(localStorage.getItem(item) === null) {
         localStorage.setItem(item, value);
@@ -65,6 +65,11 @@ const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
         localStorage.setItem("theme", selectedValue.toString());
     }
 
+    const changeFontSize = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSettings(prevSettings => ({ ...prevSettings, fontSize: `${event.target.value}px`}));
+        localStorage.setItem("fontSize", `${event.target.value}px`);
+    }
+
     // const [state, setState] = useState("");
     // useEffect(() => {
     //     setState(localStorage.getItem("color")!!);
@@ -94,7 +99,13 @@ const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
 
                     <Stack direction={"row"} justifyContent={"space-between"} spacing={10}>
                         <Stack w="100%" minW="0">
-                            <Input placeholder="Font size" width="100%"/>
+                            <Input placeholder="Font size"
+                                   width="100%"
+                                   type="number"
+                                   value={parseInt(settings.fontSize)}
+                                   min={1}
+                                   max={200}
+                                   onChange={changeFontSize}/>
                         </Stack>
                         <Stack w="100%" minW="0 !important">
                             <Input placeholder="Print margin" width="100%"/>
