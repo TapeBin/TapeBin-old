@@ -1,16 +1,19 @@
 import React from "react";
 import { Button, Flex, Image, Stack, useDisclosure, DrawerContent } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
+import Tiers from "./Tiers";
+
 const Settings = dynamic(() => {
     return import("../components/Settings")
 }, { ssr: false });
 
 const Navbar = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const { isOpen: isOpenSettings, onOpen: onOpenSettings, onClose: onCloseSettings } = useDisclosure();
+    const { isOpen: isOpenTiers, onOpen: onOpenTiers, onClose: onCloseTiers } = useDisclosure();
 
-    const handleSettingsClick = () => {
-        onOpen();
-    };
+    const handleSettingsClick = () => onOpenSettings();
+
+    const handleTierClick = () => onOpenTiers();
 
     return (
         <>
@@ -63,14 +66,16 @@ const Navbar = () => {
                         _hover={{ bg: "transparent", border: "3px solid rgba(68, 68, 68, 1)" }}
                         _active={{ bg: "transparent", border: "3px solid rgba(68, 68, 68, 1)" }}
                         _focus={{ border: "3px solid transparent" }}
-
+                        onClick={handleTierClick}
                     >
                         Tiers
                     </Button>
                 </Stack>
             </Flex>
 
-            <Settings onClose={onClose} isOpen={isOpen}/>
+            <Settings onClose={onCloseSettings} isOpen={isOpenSettings}/>
+
+            <Tiers onClose={onCloseTiers} isOpen={isOpenTiers}/>
 
         </>
     );
