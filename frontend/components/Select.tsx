@@ -20,9 +20,8 @@ const Select: FunctionComponent<SelectProps> = (props: SelectProps) => {
             autoComplete={"on"}
             closeOnSelect={true}
             onChange={props.onChange}
-
         />
     );
-}
+};
 
 export default Select;

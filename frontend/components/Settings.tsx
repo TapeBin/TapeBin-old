@@ -11,7 +11,7 @@ import Input, { Label } from "./Input";
 import dynamic from "next/dynamic";
 import { atom, useAtom } from "jotai";
 import fontFamilies from "../utils/fonts.json";
-import languages from "../utils/languages.json";
+import themes from "../utils/themes.json";
 import { SelectedOptionValue } from "react-select-search";
 
 const Select = dynamic(() => import("./Select"), { ssr: false });
@@ -31,6 +31,7 @@ type SettingsProps = {
 const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
     const [settings, setSettings] = useAtom(settingsAtom);
     const fontFamiliesArray: any[] = [];
+    const themesArray: any[] = [];
 
     // @ts-ignore
     for (const index in fontFamilies.fonts) {
@@ -39,8 +40,19 @@ const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
         fontFamiliesArray.push({ name: font, value: font });
     }
 
+    for (const key in themes) {
+        if (themes.hasOwnProperty(key)) {
+            // @ts-ignore
+            themesArray.push({ name: themes[key], value: key });
+        }
+    }
+
     const changeFont = (selectedValue: SelectedOptionValue | SelectedOptionValue[]) => {
         setSettings(prevSettings => ({ ...prevSettings, fontFamily: selectedValue.toString() }));
+    }
+
+    const changeTheme = (selectedValue: SelectedOptionValue | SelectedOptionValue[]) => {
+        setSettings(prevSettings => ({ ...prevSettings, theme: selectedValue.toString() }));
     }
 
     // const [state, setState] = useState("");
@@ -65,8 +77,8 @@ const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
                         </Stack>
                         <Stack>
                             <Label>Theme</Label>
-                            <Select options={[]} onChange={() => {
-                            }} value={"0"}/>
+                            <Select options={themesArray}
+                                    onChange={changeTheme} value={settings.theme}/>
                         </Stack>
                     </Stack>
 
