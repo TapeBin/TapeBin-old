@@ -40,7 +40,7 @@ const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
     }
 
     const changeFont = (selectedValue: SelectedOptionValue | SelectedOptionValue[]) => {
-        setSettings(prevSettings => ({...prevSettings, fontFamily: selectedValue.toString()}));
+        setSettings(prevSettings => ({ ...prevSettings, fontFamily: selectedValue.toString() }));
     }
 
     // const [state, setState] = useState("");

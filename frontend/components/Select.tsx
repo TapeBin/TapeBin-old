@@ -17,6 +17,7 @@ const Select: FunctionComponent<SelectProps> = (props: SelectProps) => {
             options={props.options}
             disabled={props.disabled}
             value={props.value}
+            autoComplete={"on"}
             closeOnSelect={true}
             onChange={props.onChange}
 
