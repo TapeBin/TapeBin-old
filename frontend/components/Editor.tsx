@@ -2,18 +2,21 @@ import React, { FunctionComponent } from "react";
 import AceEditor from "react-ace";
 import ace from "ace-builds/src-noconflict/ace";
 import { Box } from "@chakra-ui/react";
+import { useAtom } from "jotai";
+import { settingsAtom } from "./Settings";
 
 ace.config.set("basePath", "ace/");
 
 type EditorProps = {
-    theme: string,
-    language: string,
+    theme?: string,
+    language?: string,
     onChange?: (value: string) => void,
     value?: string | "",
     style?: string
 };
 
 const Editor: FunctionComponent<EditorProps> = (props: EditorProps) => {
+    const [settings] = useAtom(settingsAtom);
 
     return (
         <Box style={{ width: "100%", height: "100%", filter: props.style}}>
@@ -21,12 +24,13 @@ const Editor: FunctionComponent<EditorProps> = (props: EditorProps) => {
                        value={props.value}
                        onChange={props.onChange}
                        style={{ padding: 0 }}
-                       theme={props.theme}
+                       theme={props.theme || settings.theme}
                        setOptions={{
-                           showPrintMargin: false,
+                           showPrintMargin: settings.printMargin,
                            useWorker: false,
                            cursorStyle: "smooth",
-                           fontSize: "15px"
+                           fontSize: settings.fontSize,
+                           fontFamily: settings.fontFamily
                        }}
                        mode={props.language}
                        readOnly={!!props.value}

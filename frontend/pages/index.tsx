@@ -14,8 +14,7 @@ const Index = (props: any) => {
         <Flex flexDirection="column" height="100vh" width="100vw" position="relative">
             <Navbar/>
             <Options hasId={false}/>
-            <DynamicEditor theme="one_dark"
-                           language="bsl"/>
+            <DynamicEditor/>
         </Flex>
     );
 }

@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import SelectSearch, { fuzzySearch, SelectedOptionValue } from "react-select-search";
 
 type SelectProps = {
-    options: [],
+    options: any[],
     disabled?: boolean | false,
     value: string,
     onChange: (selectedValue: SelectedOptionValue | SelectedOptionValue[]) => void
@@ -11,11 +11,16 @@ type SelectProps = {
 const Select: FunctionComponent<SelectProps> = (props: SelectProps) => {
 
     return (
-        <SelectSearch search filterOptions={fuzzySearch}
-                      options={props.options}
-                      disabled={props.disabled}
-                      value={props.disabled ? props.value : "0"}
-                      closeOnSelect={true} onChange={props.onChange}/>
+        <SelectSearch
+            search
+            filterOptions={fuzzySearch}
+            options={props.options}
+            disabled={props.disabled}
+            value={props.value}
+            closeOnSelect={true}
+            onChange={props.onChange}
+
+        />
     );
 }
 

@@ -1,6 +1,9 @@
 import React from "react";
 import { Button, Flex, Image, Stack, useDisclosure, DrawerContent } from "@chakra-ui/react";
-import Settings from "./Settings";
+import dynamic from "next/dynamic";
+const Settings = dynamic(() => {
+    return import("../components/Settings")
+}, { ssr: false });
 
 const Navbar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();

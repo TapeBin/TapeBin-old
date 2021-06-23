@@ -1,6 +1,7 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import SelectSearch, { fuzzySearch, SelectedOptionValue } from "react-select-search";
 import languages from "../utils/languages.json";
+import fontFamilies from "../utils/fonts.json";
 
 type SelectProps = {
     onChange?: (selectedValue: SelectedOptionValue | SelectedOptionValue[]) => void,
