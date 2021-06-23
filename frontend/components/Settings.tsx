@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 import { atom, useAtom } from "jotai";
 import fontFamilies from "../utils/fonts.json";
 import languages from "../utils/languages.json";
+import { SelectedOptionValue } from "react-select-search";
 
 const Select = dynamic(() => import("./Select"), { ssr: false });
 
@@ -38,6 +39,10 @@ const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
         fontFamiliesArray.push({ name: font, value: font });
     }
 
+    const changeFont = (selectedValue: SelectedOptionValue | SelectedOptionValue[]) => {
+        setSettings(prevSettings => ({...prevSettings, fontFamily: selectedValue.toString()}));
+    }
+
     // const [state, setState] = useState("");
     // useEffect(() => {
     //     setState(localStorage.getItem("color")!!);
@@ -55,8 +60,8 @@ const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
                     <Stack direction={"row"} justifyContent={"space-between"} spacing={10}>
                         <Stack>
                             <Label>Font family</Label>
-                            <Select options={fontFamiliesArray} onChange={() => {
-                            }} value={fontFamiliesArray[0]}/>
+                            <Select options={fontFamiliesArray}
+                                    onChange={changeFont} value={settings.fontFamily}/>
                         </Stack>
                         <Stack>
                             <Label>Theme</Label>
