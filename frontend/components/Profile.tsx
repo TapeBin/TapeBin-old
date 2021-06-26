@@ -27,7 +27,7 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
             <DrawerOverlay/>
             <DrawerContent bg={"#232323"} color="white" alignItems={"center"}>
                 <DrawerBody mt="5em" overflow={"hidden"} h="100%" w="100%">
-                    <Flex justifyContent="flex-start" ml="5em" mt="2em">
+                    <Flex justifyContent="flex-start" ml={{base: "1em", xl: "5em"}} mt={{base: "0.7em", xl: "2em"}}>
                         <Button
                             borderRadius={3}
                             border="3px solid rgba(68, 68, 68, 1)"
@@ -45,23 +45,24 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
                         </Button>
                     </Flex>
 
-                    <Box w="80%" m="0 auto" mt={"2em"} borderBottom="1px solid rgb(126, 126, 126)" pb="20px">
+                    <Box w={{base: "95%", xl: "80%"}} m="0 auto" mt={"2em"} borderBottom="1px solid rgb(126, 126, 126)" pb="20px">
                         <Flex justifyContent="space-between">
-                            <Stack direction="row" spacing={"1.6em"} alignItems={"center"}>
-                                <Image src={user.profileImage} height={["70px"]} borderRadius="50%"/>
+                            <Stack direction="row" spacing={{base: "0.7em", xl: "1.6em"}} alignItems={"center"}>
+                                <Image src={user.profileImage} height={{base: "50px", xl: "70px"}} borderRadius="50%"/>
                                 <Stack>
                                     <Flex direction="row" alignItems={"center"} w={"100%"}>
-                                        <Text fontFamily="Inter" fontSize={"30px"}>{user.username}</Text>
+                                        <Text fontFamily="Inter" fontSize={{base: "20px", xl: "30px"}}>{user.username}</Text>
                                         <Image src="githubIcon.svg" h="25px" ml="10px"/>
                                     </Flex>
                                     <Stack direction="row" fontFamily="Poppins" textAlign="center">
                                         <Text
-                                            w="60px"
+                                            w={{base: "50px", xl: "60px"}}
+                                            fontSize={{base: "13px", xl: "16px"}}
                                             bgColor={user.isPro ? "#00C2FF" : "rgba(68, 68, 68, 0.59)"}
                                             borderRadius="4px"
-                                            p="1px 5px"
+                                            p={{base: "2px 1px", xl: "1px 5px"}}
                                         >FREE</Text>
-                                        <Text color="rgb(205,205,205)">
+                                        <Text color="rgb(205,205,205)" fontSize={{base: "13px", xl: "16px"}}>
                                             Permanent
                                         </Text>
                                     </Stack>
