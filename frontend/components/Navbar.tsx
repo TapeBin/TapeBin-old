@@ -21,7 +21,6 @@ const Navbar = () => {
 
     const handleProfileClick = () => {
         if(user.isLoggedIn) {
-
         } else {
             window.open(`${API_LINK}/auth/github`, "_self");
         }
@@ -50,7 +49,7 @@ const Navbar = () => {
                     alignItems="center" spacing={[2, 4]}
                     fontFamily="Poppins, sans-serif"
                 >
-                    <Image src={user.profileImage} onClick={handleProfileClick} cursor={"pointer"} boxSize={["33px", 41]}/>
+                    <Image src={user.profileImage} borderRadius="50%" onClick={handleProfileClick} cursor={"pointer"} boxSize={["33px", 41]}/>
                     <Button
                         borderRadius={3}
                         border="3px solid transparent"

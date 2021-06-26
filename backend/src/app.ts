@@ -5,8 +5,10 @@ import mongoose from "mongoose";
 import session from "express-session";
 import passport from "passport";
 import User from "./schemas/User";
-const dotenv = require("dotenv").config({path: "../.env"});
+
+const dotenv = require("dotenv").config({ path: "../.env" });
 import { createBin } from "./utils/binUtils";
+
 const app = express();
 const githubStrategy = require("./strategies/githubStrategy");
 const PORT = 5000;
@@ -34,9 +36,9 @@ app.use(session({
     secret: `${process.env.SESSION_SECRET}`,
     resave: true,
     saveUninitialized: true,
-    cookie: {
-        secure: !!process.env.PRODUCTION
-    }
+    // cookie: {
+    //     secure: !!process.env.PRODUCTION
+    // }
 }));
 
 app.use(passport.initialize());
@@ -55,7 +57,7 @@ passport.deserializeUser((id: string, done: any) => {
 githubStrategy(passport, app);
 
 function isLoggedIn(req: any, res: any, next: any) {
-    if(req.isAuthenticated())
+    if (req.isAuthenticated())
         next();
     else res.redirect(FRONT_END);
 }
@@ -70,8 +72,12 @@ app.post("/bin/creation", (req, res) => {
     }).catch(err => console.log(err));
 });
 
-app.get("/getuser", isLoggedIn, (req, res) => {
-    res.json(req.user);
+app.get("/user", (req, res) => {
+    if (req.user) {
+        res.json(req.user);
+    } else {
+        res.json({loginFailed: true});
+    }
 });
 
 app.get("/auth/logout", (req, res) => {
