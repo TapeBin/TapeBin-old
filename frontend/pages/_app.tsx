@@ -13,7 +13,8 @@ export const userAtom = atom({
     githubId: undefined,
     discordId: undefined,
     profileImage: "avatar.svg",
-    isLoggedIn: false
+    isLoggedIn: false,
+    isPro: false
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -30,7 +31,8 @@ function MyApp({ Component, pageProps }: AppProps) {
                     githubId: result.data.githubId,
                     discordId: result.data.discordId,
                     profileImage: `https://avatars.githubusercontent.com/u/${result.data.githubId}?v=3`,
-                    isLoggedIn: true
+                    isLoggedIn: true,
+                    isPro: false
                 });
             }
         });

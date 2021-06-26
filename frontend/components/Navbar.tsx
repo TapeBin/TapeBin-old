@@ -5,6 +5,7 @@ import Tiers from "./Tiers";
 import { useAtom } from "jotai";
 import { userAtom } from "../pages/_app";
 import { API_LINK } from "../utils/links";
+import Profile from "./Profile";
 
 const Settings = dynamic(() => {
     return import("../components/Settings")
@@ -14,6 +15,7 @@ const Navbar = () => {
     const [user] = useAtom(userAtom);
     const { isOpen: isOpenSettings, onOpen: onOpenSettings, onClose: onCloseSettings } = useDisclosure();
     const { isOpen: isOpenTiers, onOpen: onOpenTiers, onClose: onCloseTiers } = useDisclosure();
+    const { isOpen: isOpenProfile, onOpen: onOpenProfile, onClose: onCloseProfile } = useDisclosure();
 
     const handleSettingsClick = () => onOpenSettings();
 
@@ -21,6 +23,7 @@ const Navbar = () => {
 
     const handleProfileClick = () => {
         if(user.isLoggedIn) {
+            onOpenProfile();
         } else {
             window.open(`${API_LINK}/auth/github`, "_self");
         }
@@ -87,6 +90,8 @@ const Navbar = () => {
             <Settings onClose={onCloseSettings} isOpen={isOpenSettings}/>
 
             <Tiers onClose={onCloseTiers} isOpen={isOpenTiers}/>
+
+            <Profile onClose={onCloseProfile} isOpen={isOpenProfile}/>
 
         </>
     );
