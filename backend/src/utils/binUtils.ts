@@ -1,5 +1,5 @@
 import cryptoRandomString from "crypto-random-string";
-import { KEY_LENGTH } from "./types";
+import { KEY_LENGTH, MongoUser } from "./types";
 import Bin from "../schemas/Bin";
 
 export function generateKey(): Promise<string> {
@@ -9,7 +9,7 @@ export function generateKey(): Promise<string> {
     });
 }
 
-export async function createBin(data: any, user: any): Promise<BinCreation> {
+export async function createBin(data: any, user: MongoUser): Promise<BinCreation> {
     let succeed = false;
 
     if (data.text === "" || data.text === undefined) {

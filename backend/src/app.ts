@@ -5,9 +5,10 @@ import mongoose from "mongoose";
 import session from "express-session";
 import passport from "passport";
 import User from "./schemas/User";
-
+import Bin from "./schemas/Bin";
 const dotenv = require("dotenv").config({ path: "../.env" });
-import { createBin } from "./utils/binUtils";
+import { createBin, getFormattedDate } from "./utils/binUtils";
+import { MongoUser } from "./utils/types";
 
 const app = express();
 const githubStrategy = require("./strategies/githubStrategy");
@@ -63,13 +64,35 @@ function isLoggedIn(req: any, res: any, next: any) {
 }
 
 app.post("/bin/creation", (req, res) => {
-    createBin(req.body, req.user).then(binCreation => {
+    createBin(req.body, req.user as MongoUser).then(binCreation => {
         if (binCreation.succeed) {
             res.status(201).json(binCreation);
         } else {
             res.status(500).json(binCreation);
         }
     }).catch(err => console.log(err));
+});
+
+app.get("/bin/user", (req, res) => {
+    const user = req.user as MongoUser;
+    // @ts-ignore
+    Bin.find({ ownerId: user._id }, (err: mongoose.Error, documents) => {
+        const bins: any[] = [];
+        documents.forEach((document) => {
+            bins.push({
+                binId: document.get("binId"),
+                createdAt: getFormattedDate(Date.parse(document.get("createdAt"))),
+                title: document.get("title"),
+                description: document.get("description"),
+                languageId: document.get("languageId"),
+            });
+        });
+
+        if (err)
+            res.json({ succeed: false });
+        else
+            res.json({ succeed: true, bins });
+    });
 });
 
 app.get("/user", (req, res) => {

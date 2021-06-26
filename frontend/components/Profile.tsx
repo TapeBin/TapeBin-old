@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import {
     Box,
     Button,
@@ -13,6 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { userAtom } from "../pages/_app";
+import { API_LINK } from "../utils/links";
+import axios, { AxiosResponse } from "axios";
+import Bin from "./Bin";
 
 type ProfileProps = {
     onClose: () => void,
@@ -21,6 +24,21 @@ type ProfileProps = {
 
 const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
     const [user] = useAtom(userAtom);
+    const [state, setState] = useState<any>();
+
+    const showUserBins = () => {
+        axios({
+            method: "GET",
+            withCredentials: true,
+            url: `${API_LINK}/bin/user`
+        }).then((result: AxiosResponse) => {
+            setState(result.data.bins);
+        })
+    };
+
+    useEffect(() => {
+        showUserBins()
+    }, []);
 
     return (
         <Drawer onClose={props.onClose} isOpen={props.isOpen} size={"full"} placement={"top"}>
@@ -90,6 +108,18 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
                                 </Button>
                             </Flex>
                         </Box>
+
+                        {state && state.map((bin: any, index: number) => {
+                            return (<Bin
+                                binId={bin.binId}
+                                createdAt={bin.createdAt}
+                                title={bin.title}
+                                description={bin.description}
+                                languageId={bin.languageId}
+                                isDarker={index % 2 === 0}
+                                closeBin={() => {}}
+                            />)
+                        })}
                     </Stack>
 
 
