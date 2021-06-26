@@ -1,0 +1,1 @@
+export const API_LINK = process.env.PRODUCTION ? "https://tapeb.in/api" : "http://localhost:5000";

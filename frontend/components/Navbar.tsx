@@ -2,18 +2,30 @@ import React from "react";
 import { Button, Flex, Image, Stack, useDisclosure, DrawerContent } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import Tiers from "./Tiers";
+import { useAtom } from "jotai";
+import { userAtom } from "../pages/_app";
+import { API_LINK } from "../utils/links";
 
 const Settings = dynamic(() => {
     return import("../components/Settings")
 }, { ssr: false });
 
 const Navbar = () => {
+    const [user] = useAtom(userAtom);
     const { isOpen: isOpenSettings, onOpen: onOpenSettings, onClose: onCloseSettings } = useDisclosure();
     const { isOpen: isOpenTiers, onOpen: onOpenTiers, onClose: onCloseTiers } = useDisclosure();
 
     const handleSettingsClick = () => onOpenSettings();
 
     const handleTierClick = () => onOpenTiers();
+
+    const handleProfileClick = () => {
+        if(user.isLoggedIn) {
+
+        } else {
+            window.open(`${API_LINK}/auth/github`, "_self");
+        }
+    };
 
     return (
         <>
@@ -38,7 +50,7 @@ const Navbar = () => {
                     alignItems="center" spacing={[2, 4]}
                     fontFamily="Poppins, sans-serif"
                 >
-                    <Image src="avatar.svg" boxSize={["33px", 41]}/>
+                    <Image src={user.profileImage} onClick={handleProfileClick} cursor={"pointer"} boxSize={["33px", 41]}/>
                     <Button
                         borderRadius={3}
                         border="3px solid transparent"
