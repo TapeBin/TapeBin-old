@@ -32,6 +32,7 @@ type InputProps = {
     disabled?: boolean,
     value?: string | number,
     width?: string,
+    height?: string,
     type?: string | "text",
     min?: number,
     max?: number,
@@ -46,7 +47,7 @@ const Input: FunctionComponent<InputProps> = (props: InputProps) => {
                 defaultValue={props.value}
                 onChange={props.onChange}
                 disabled={props.disabled}
-                style={{width: props.width}}
+                style={{width: props.width, height: props.height}}
                 type={props.type}
                 min={props.min}
                 max={props.max}

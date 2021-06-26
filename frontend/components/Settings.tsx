@@ -96,7 +96,7 @@ const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
                                     onChange={changeFont} value={settings.fontFamily}/>
                         </Stack>
                         <Stack>
-                            <Label>Theme</Label>
+                            <Label>Theme</Label>asdasd
                             <Select options={themesArray}
                                     onChange={changeTheme} value={settings.theme}/>
                         </Stack>
@@ -110,6 +110,7 @@ const Settings: FunctionComponent<SettingsProps> = (props: SettingsProps) => {
                                    value={parseInt(settings.fontSize)}
                                    min={1}
                                    max={200}
+                                   height={"50px !important"}
                                    onChange={changeFontSize}/>
                         </Stack>
                         <Stack w="100%" minW="0 !important">
