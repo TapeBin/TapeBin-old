@@ -81,7 +81,7 @@ const Bin: FunctionComponent<BinProps> = (props: BinProps) => {
                     overflow="hidden"
                     color="rgba(255, 255, 255, 0.7)"
                     h={{ base: "80%", xl: "100%"}}
-                    w="50%"
+                    w={{base: "30%", xl: "50%"}}
                     ml={{base: "15px", xl: "0"}}
                 >
                     {props.description}
