@@ -71,7 +71,7 @@ const Bin: FunctionComponent<BinProps> = (props: BinProps) => {
                     fontFamily="Roboto, sans-serif"
                     fontSize={{ base: "13px", xl: "16px" }}
                     css={{
-                        "-webkit-line-clamp": "3",
+                        "-webkit-line-clamp": "2",
                         "-webkit-box-orient": "vertical"
                     }}
                     display={"-webkit-box"}
@@ -80,7 +80,7 @@ const Bin: FunctionComponent<BinProps> = (props: BinProps) => {
                     whiteSpace="initial"
                     overflow="hidden"
                     color="rgba(255, 255, 255, 0.7)"
-                    h={{ base: "45px", xl: "60px"}}
+                    h={{ base: "80%", xl: "100%"}}
                     w="50%"
                     ml={{base: "15px", xl: "0"}}
                 >
