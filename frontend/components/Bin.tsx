@@ -67,6 +67,25 @@ const Bin: FunctionComponent<BinProps> = (props: BinProps) => {
                         {state.language}
                     </Flex>
                 </Flex>
+                <Text
+                    fontFamily="Roboto, sans-serif"
+                    fontSize={{ base: "13px", xl: "16px" }}
+                    css={{
+                        "-webkit-line-clamp": "3",
+                        "-webkit-box-orient": "vertical"
+                    }}
+                    display={"-webkit-box"}
+                    textAlign="left"
+                    textOverflow="ellipsis"
+                    whiteSpace="initial"
+                    overflow="hidden"
+                    color="rgba(255, 255, 255, 0.7)"
+                    h={{ base: "45px", xl: "60px"}}
+                    w="50%"
+                    ml={{base: "15px", xl: "0"}}
+                >
+                    {props.description}
+                </Text>
             </Flex>
         </Box>
     );
