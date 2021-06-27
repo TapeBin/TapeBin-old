@@ -63,8 +63,8 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
                         </Button>
                     </Flex>
 
-                    <Stack w={{ base: "95%", xl: "80%" }} m="0 auto" mt={"2em"} >
-                        <Box borderBottom="1px solid rgb(126, 126, 126)" pb="20px">
+                    <Stack w={{ base: "95%", xl: "80%" }} m="0 auto" mt={"2em"}>
+                        <Box borderBottom="1px solid rgb(126, 126, 126)" pb="20px" mb="20px">
                             <Flex justifyContent="space-between">
                                 <Stack direction="row" spacing={{ base: "0.7em", xl: "1.6em" }} alignItems={"center"}>
                                     <Image src={user.profileImage} height={{ base: "50px", xl: "70px" }}
@@ -73,7 +73,7 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
                                         <Flex direction="row" alignItems={"center"} w={"100%"}>
                                             <Text fontFamily="Inter"
                                                   fontSize={{ base: "20px", xl: "30px" }}>{user.username}</Text>
-                                            <Image src="githubIcon.svg" h="25px" ml="10px"/>
+                                            <Image src="githubIcon.svg" h={{base: "20px", xl: "25px"}} ml="10px"/>
                                         </Flex>
                                         <Stack direction="row" fontFamily="Poppins" textAlign="center">
                                             <Text
