@@ -22,6 +22,8 @@ export async function createBin(data: any, user: MongoUser): Promise<BinCreation
         userId = user._id;
 
     const url = await generateKey();
+    const bins: string[] = [];
+    data.text.forEach((bin: string) => bins.push(bin));
 
     const bin = await new Bin({
         binId: url,
@@ -32,7 +34,7 @@ export async function createBin(data: any, user: MongoUser): Promise<BinCreation
         languageExtension: data.languageExtension,
         languageId: data.languageId,
         fileName: data.fileName,
-        text: data.text
+        text: bins
     });
 
     await bin.save().then(() => succeed = true).catch((err: any) => {

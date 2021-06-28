@@ -37,7 +37,7 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
     };
 
     useEffect(() => {
-        showUserBins()
+        showUserBins();
     }, []);
 
     return (

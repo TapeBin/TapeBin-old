@@ -85,7 +85,7 @@ const Bin: FunctionComponent<BinProps> = (props: BinProps) => {
                     w={{ base: "30%", xl: "100%" }}
                     ml={{ base: "15px", xl: "0" }}
                 >
-                    {props.description}
+                    {props.description || "No description"}
                 </Text>
                 <Flex direction="column" w={"12em"} alignItems="left" alignContent="left" justifyContent="flex-start" color="rgba(255, 255, 255, 0.8)" fontFamily="Inter, sans-serif" fontSize={{base: "13px", xl: "16px"}}>
                     <Stack direction="row" alignItems="center" alignContent="center">

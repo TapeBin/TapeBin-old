@@ -9,6 +9,9 @@ import { atom } from "jotai";
 import { useAtom } from "jotai";
 import { SelectedOptionValue } from "react-select-search";
 import linguist from "../utils/linguist.json";
+import axios, { AxiosResponse } from "axios";
+import { API_LINK } from "../utils/links";
+import { useRouter } from "next/router";
 
 const SelectSearch = dynamic(() => import("./SelectLanguage"), { ssr: false });
 
@@ -53,12 +56,14 @@ type OptionsProps = {
 export const binAtom = atom({
     title: "",
     description: "",
-    languageId: 0,
     languageExtension: "bsl",
-    fileName: ""
+    languageId: 0,
+    fileName: "",
+    text: [""]
 });
 
 const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
+    const router = useRouter();
     const [bin, setBin] = useAtom(binAtom);
     const [isMobileOpen, setOpen] = useState(false);
     const { isOpen, onToggle } = useDisclosure();
@@ -69,11 +74,11 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
 
     const changeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBin(prevState => ({ ...prevState, title: event.target.value }));
-    }
+    };
 
     const changeDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setBin(prevState => ({ ...prevState, description: event.target.value }));
-    }
+    };
 
     const changeLanguage = (selectedValue: SelectedOptionValue | SelectedOptionValue[]) => {
         if (linguist.hasOwnProperty(selectedValue.toString())) {
@@ -85,10 +90,24 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                 languageExtension: extension.aceMode
             }));
         }
-    }
+    };
 
     const changeFileName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBin(prevState => ({ ...prevState, fileName: event.target.value }));
+    };
+
+    const handleSaveClick = () => {
+        axios({
+            method: "POST",
+            withCredentials: true,
+            data: bin,
+            url: `${API_LINK}/bin/creation`
+        }).then((response: AxiosResponse) => {
+            if (response.status === 201) {
+                navigator.clipboard.writeText(`https://tapeb.in/${response.data.url}`);
+                router.push(`/[id]`, `/${response.data.url}`, { shallow: true })
+            }
+        });
     }
 
     return (
@@ -120,7 +139,7 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                         <Input placeholder="File name" value={bin.fileName} onChange={changeFileName}
                                disabled={props.hasId}/>
                         <BR/>
-                        <Button disabled={props.hasId}>
+                        <Button disabled={props.hasId} onClick={handleSaveClick}>
                             Save
                         </Button>
                     </Flex>
@@ -148,7 +167,7 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                         <Input placeholder="File name" value={bin.fileName} onChange={changeFileName}
                                disabled={props.hasId}/>
                         <BR/>
-                        <Button disabled={props.hasId}>
+                        <Button disabled={props.hasId} onClick={handleSaveClick}>
                             Save
                         </Button>
                     </Stack>
