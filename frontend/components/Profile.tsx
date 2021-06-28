@@ -97,6 +97,7 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
                                     paddingX={[4, 7]}
                                     bg="transparent"
                                     transition="none"
+                                    fontFamily="Poppins, sans-serif"
                                     fontWeight="regular"
                                     alignSelf="center"
                                     fontSize={[12, 16]}
