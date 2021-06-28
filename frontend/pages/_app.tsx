@@ -3,7 +3,7 @@ import "../styles/select.css";
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from "@chakra-ui/react";
 import { atom } from "jotai";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { API_LINK } from "../utils/links";
 import { useAtom } from "jotai";
@@ -14,18 +14,19 @@ export const userAtom = atom({
     discordId: undefined,
     profileImage: "avatar.svg",
     isLoggedIn: false,
-    isPro: false
+    isPro: false,
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const [user, setUser] = useAtom(userAtom);
+    const [_, setUser] = useAtom(userAtom);
+    const [isLoaded, setLoaded] = useState(false);
     useEffect(() => {
         axios({
             method: "GET",
             withCredentials: true,
             url: `${API_LINK}/user`
         }).then((result: AxiosResponse) => {
-            if (!result.data.loginFailed) {
+            if (result.data.username) {
                 setUser({
                     username: result.data.username,
                     githubId: result.data.githubId,
@@ -35,12 +36,15 @@ function MyApp({ Component, pageProps }: AppProps) {
                     isPro: false
                 });
             }
+
+            setLoaded(true);
         });
+
     }, []);
 
     return (
         <ChakraProvider>
-            <Component {...pageProps} />
+            {isLoaded && <Component {...pageProps} />}
         </ChakraProvider>
     )
 }

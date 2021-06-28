@@ -37,7 +37,8 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
     };
 
     useEffect(() => {
-        showUserBins();
+        if (user.isLoggedIn)
+            showUserBins();
     }, []);
 
     return (
@@ -63,7 +64,7 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
                         </Button>
                     </Flex>
 
-                    <Stack w={{ base: "95%", xl: "80%" }} h={"80%"} m="0 auto" mt={"2em"} mb={{base: "0", lg: "2em"}}>
+                    <Stack w={{ base: "95%", xl: "80%" }} h={"80%"} m="0 auto" mt={"2em"} mb={{ base: "0", lg: "2em" }}>
                         <Box borderBottom="1px solid rgb(126, 126, 126)" pb="20px" mb="20px">
                             <Flex justifyContent="space-between">
                                 <Stack direction="row" spacing={{ base: "0.7em", xl: "1.6em" }} alignItems={"center"}>
