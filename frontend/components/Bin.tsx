@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import linguist from "../utils/linguist.json";
+import { CalendarIcon, DeleteIcon, EditIcon, ViewIcon } from "@chakra-ui/icons";
 
 type BinProps = {
     binId: string,
@@ -36,9 +37,9 @@ const Bin: FunctionComponent<BinProps> = (props: BinProps) => {
 
     return (
         <Box w="100%" h="80px" p="15px 0" bgColor={props.isDarker ? "rgba(68, 68, 68, 0.3)" : "rgba(68, 68, 68, 1)"}>
-            <Flex direction="row" h="100%" ml={{ base: "5px", xl: "20px" }} alignItems="center !important"
-                  alignContent="center !important">
-                <Flex w="20%" direction="column" whiteSpace="nowrap">
+            <Flex direction="row" h="100%" ml={{ base: "5px", xl: "20px" }} mr={{ base: "5px", xl: "20px" }} alignItems="center !important"
+                  alignContent="center !important" justifyContent="space-between">
+                <Flex w={{base: "11em", xl: "20em"}} direction="column" whiteSpace="nowrap">
                     <Text
                         fontFamily="Roboto, sans-serif"
                         fontSize={{ base: "14px", xl: "20px" }}
@@ -74,18 +75,34 @@ const Bin: FunctionComponent<BinProps> = (props: BinProps) => {
                         "-webkit-line-clamp": "2",
                         "-webkit-box-orient": "vertical"
                     }}
-                    display={"-webkit-box"}
+                    display={{ base: "none", lg: "-webkit-box" }}
                     textAlign="left"
                     textOverflow="ellipsis"
                     whiteSpace="initial"
                     overflow="hidden"
                     color="rgba(255, 255, 255, 0.7)"
-                    h={{ base: "80%", xl: "100%"}}
-                    w={{base: "30%", xl: "50%"}}
-                    ml={{base: "15px", xl: "0"}}
+                    h={{ base: "80%", xl: "100%" }}
+                    w={{ base: "30%", xl: "100%" }}
+                    ml={{ base: "15px", xl: "0" }}
                 >
                     {props.description}
                 </Text>
+                <Flex direction="column" w={"12em"} alignItems="left" alignContent="left" justifyContent="flex-start" fontSize={{base: "13px", xl: "16px"}}>
+                    <Stack direction="row" alignItems="center" alignContent="center">
+                        <ViewIcon/>
+                        <Text>0 views</Text>
+                    </Stack>
+                    <Stack direction="row" alignItems="center" alignContent="center">
+                        <CalendarIcon/>
+                        <Text>{props.createdAt}</Text>
+                    </Stack>
+                </Flex>
+
+                <Flex direction="row" w="5em" alignItems="left" alignContent="left" justifyContent="space-evenly" ml={{base: "0.3em", xl: "3em"}}>
+                    <EditIcon h={{base: "20px", xl: "25px"}} w={{base: "20px", xl: "25px"}} mr="10px"/>
+                    <DeleteIcon color="#FF5151" h={{base: "20px", xl: "25px"}} w={{base: "20px", xl: "25px"}}/>
+                </Flex>
+
             </Flex>
         </Box>
     );
