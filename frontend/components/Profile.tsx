@@ -73,7 +73,7 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
                                         <Flex direction="row" alignItems={"center"} w={"100%"}>
                                             <Text fontFamily="Inter"
                                                   fontSize={{ base: "20px", xl: "30px" }}>{user.username}</Text>
-                                            <Image src="githubIcon.svg" h={{base: "20px", xl: "25px"}} ml="10px"/>
+                                            <Image src="githubIcon.svg" h={{ base: "20px", xl: "25px" }} ml="10px"/>
                                         </Flex>
                                         <Stack direction="row" fontFamily="Poppins" textAlign="center">
                                             <Text
@@ -110,17 +110,6 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
                         </Box>
 
                         <Stack overflowY="auto" h="80% !important">
-                        {state && state.map((bin: any, index: number) => {
-                            return (<Bin
-                                binId={bin.binId}
-                                createdAt={bin.createdAt}
-                                title={bin.title}
-                                description={bin.description}
-                                languageId={bin.languageId}
-                                isDarker={index % 2 === 0}
-                                closeBin={() => {}}
-                            />)
-                        })}
                             {state && state.map((bin: any, index: number) => {
                                 return (<Bin
                                     binId={bin.binId}
@@ -129,62 +118,8 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
                                     description={bin.description}
                                     languageId={bin.languageId}
                                     isDarker={index % 2 === 0}
-                                    closeBin={() => {}}
-                                />)
-                            })}
-                            {state && state.map((bin: any, index: number) => {
-                                return (<Bin
-                                    binId={bin.binId}
-                                    createdAt={bin.createdAt}
-                                    title={bin.title}
-                                    description={bin.description}
-                                    languageId={bin.languageId}
-                                    isDarker={index % 2 === 0}
-                                    closeBin={() => {}}
-                                />)
-                            })}
-                            {state && state.map((bin: any, index: number) => {
-                                return (<Bin
-                                    binId={bin.binId}
-                                    createdAt={bin.createdAt}
-                                    title={bin.title}
-                                    description={bin.description}
-                                    languageId={bin.languageId}
-                                    isDarker={index % 2 === 0}
-                                    closeBin={() => {}}
-                                />)
-                            })}
-                            {state && state.map((bin: any, index: number) => {
-                                return (<Bin
-                                    binId={bin.binId}
-                                    createdAt={bin.createdAt}
-                                    title={bin.title}
-                                    description={bin.description}
-                                    languageId={bin.languageId}
-                                    isDarker={index % 2 === 0}
-                                    closeBin={() => {}}
-                                />)
-                            })}
-                            {state && state.map((bin: any, index: number) => {
-                                return (<Bin
-                                    binId={bin.binId}
-                                    createdAt={bin.createdAt}
-                                    title={bin.title}
-                                    description={bin.description}
-                                    languageId={bin.languageId}
-                                    isDarker={index % 2 === 0}
-                                    closeBin={() => {}}
-                                />)
-                            })}
-                            {state && state.map((bin: any, index: number) => {
-                                return (<Bin
-                                    binId={bin.binId}
-                                    createdAt={bin.createdAt}
-                                    title={bin.title}
-                                    description={bin.description}
-                                    languageId={bin.languageId}
-                                    isDarker={index % 2 === 0}
-                                    closeBin={() => {}}
+                                    closeBin={() => {
+                                    }}
                                 />)
                             })}
                         </Stack>
