@@ -69,7 +69,7 @@ const Bin: FunctionComponent<BinProps> = (props: BinProps) => {
                     </Flex>
                 </Flex>
                 <Text
-                    fontFamily="Roboto, sans-serif"
+                    fontFamily="Inter, sans-serif"
                     fontSize={{ base: "13px", xl: "16px" }}
                     css={{
                         "-webkit-line-clamp": "2",
