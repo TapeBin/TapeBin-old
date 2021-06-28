@@ -44,7 +44,7 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
         <Drawer onClose={props.onClose} isOpen={props.isOpen} size={"full"} placement={"top"}>
             <DrawerOverlay/>
             <DrawerContent bg={"#232323"} color="white" alignItems={"center"}>
-                <DrawerBody mt="5em" overflow={"hidden"} h="100%" w="100%">
+                <DrawerBody mt="5em" overflow={"hidden"} h="100%" w="100%" overflowY="auto">
                     <Flex justifyContent="flex-start" ml={{ base: "1em", xl: "5em" }} mt={{ base: "0.7em", xl: "2em" }}>
                         <Button
                             borderRadius={3}
@@ -63,7 +63,7 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
                         </Button>
                     </Flex>
 
-                    <Stack w={{ base: "95%", xl: "80%" }} h={"80%"} m="0 auto" mt={"2em"}>
+                    <Stack w={{ base: "95%", xl: "80%" }} h={"80%"} m="0 auto" mt={"2em"} mb={{base: "0", lg: "2em"}}>
                         <Box borderBottom="1px solid rgb(126, 126, 126)" pb="20px" mb="20px">
                             <Flex justifyContent="space-between">
                                 <Stack direction="row" spacing={{ base: "0.7em", xl: "1.6em" }} alignItems={"center"}>
