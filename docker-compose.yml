@@ -18,3 +18,5 @@ services:
       - ./frontend:/app
       - /app/.next
       - /app/node_modules
+      environment:
+        BACK_END: http://backend:5000

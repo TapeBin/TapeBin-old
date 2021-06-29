@@ -7,4 +7,8 @@ module.exports = {
     }
     return config
   },
+
+  env: {
+    BACK_END: process.env.BACK_END
+  }
 }

@@ -18,8 +18,9 @@ export const userAtom = atom({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const [_, setUser] = useAtom(userAtom);
+    const [user, setUser] = useAtom(userAtom);
     const [isLoaded, setLoaded] = useState(false);
+
     useEffect(() => {
         axios({
             method: "GET",
@@ -36,6 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                     isPro: false
                 });
             }
+            console.log(process.env.BACK_END)
 
             setLoaded(true);
         });

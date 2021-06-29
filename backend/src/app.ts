@@ -95,6 +95,23 @@ app.get("/bin/user", (req, res) => {
     });
 });
 
+app.get("/bin/:id", (req, res) => {
+    const id = req.params.id;
+    Bin.findOne({ binId: id }, function (err: mongoose.Error, document: MongoUser) {
+
+        if (err)
+            console.log(err);
+
+        if (!document) {
+            res.json({ succeed: false });
+        } else {
+
+            res.json({ succeed: true, document });
+        }
+
+    });
+});
+
 app.get("/user", (req, res) => {
     if (req.user) {
         res.json(req.user);

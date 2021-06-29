@@ -120,8 +120,7 @@ const Profile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
                                     description={bin.description}
                                     languageId={bin.languageId}
                                     isDarker={index % 2 === 0}
-                                    closeBin={() => {
-                                    }}
+                                    closeBin={props.onClose}
                                 />)
                             })}
                         </Stack>

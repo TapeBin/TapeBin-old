@@ -16,6 +16,6 @@ RUN npm run build
 #COPY .env ./dist/
 WORKDIR ./dist
 
-EXPOSE 8080
+EXPOSE 5000
 
 CMD ["node", "src/app.js"]

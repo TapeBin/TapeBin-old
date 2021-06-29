@@ -10,7 +10,7 @@ const DynamicEditor = dynamic(() => {
 }, { ssr: false });
 
 export const getServerSideProps: GetServerSideProps<{}, Record<"id", string>> = async ({ params }) => {
-    const response = await fetch(`${API_LINK}/${params!!.id}`)
+    const response = await fetch(`${process.env.BACK_END}/bin/${params!!.id}`);
     const json = await response.json();
     return {
         props: {
