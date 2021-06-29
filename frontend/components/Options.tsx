@@ -50,7 +50,12 @@ export const Arrow = styled.img`
 `;
 
 type OptionsProps = {
-    hasId: boolean
+    hasId: boolean,
+    title?: string,
+    description?: string,
+    languageExtension?: string,
+    languageId?: number,
+    fileName?: string,
 }
 
 export const binAtom = atom({
@@ -117,7 +122,7 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                     d={{ base: "none", xl: "block" }}
                     position="absolute"
                     w="400px"
-                    h="570px"
+                    h={props.hasId ? "495px" : "570px"}
                     top="10em"
                     right="4em"
                     borderRadius={6}
@@ -131,17 +136,20 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                         <Text fontFamily="Poppins, sans-serif" fontWeight="700" fontSize={25} mt="30px"
                               color="rgb(226, 226, 226);">Bin Options</Text>
 
-                        <Input placeholder="Title" value={bin.title} onChange={changeTitle} disabled={props.hasId}/>
-                        <TextBox placeholder="Description" value={bin.description} onChange={changeDescription}
+                        <Input placeholder="Title" value={props.title || bin.title} onChange={changeTitle}
+                               disabled={props.hasId}/>
+                        <TextBox placeholder="Description" value={props.description || bin.description}
+                                 onChange={changeDescription}
                                  disabled={props.hasId}/>
                         <BR/>
-                        <SelectSearch disabled={props.hasId} value={bin.languageExtension} onChange={changeLanguage}/>
-                        <Input placeholder="File name" value={bin.fileName} onChange={changeFileName}
+                        <SelectSearch disabled={props.hasId} value={`${props.languageId}` || bin.languageExtension}
+                                      onChange={changeLanguage}/>
+                        <Input placeholder="File name" value={props.fileName || bin.fileName} onChange={changeFileName}
                                disabled={props.hasId}/>
                         <BR/>
-                        <Button disabled={props.hasId} onClick={handleSaveClick}>
+                        {!props.hasId && <Button disabled={props.hasId} onClick={handleSaveClick}>
                             Save
-                        </Button>
+                        </Button>}
                     </Flex>
 
                 </Box>
@@ -167,9 +175,9 @@ const Options: FunctionComponent<OptionsProps> = (props: OptionsProps) => {
                         <Input placeholder="File name" value={bin.fileName} onChange={changeFileName}
                                disabled={props.hasId}/>
                         <BR/>
-                        <Button disabled={props.hasId} onClick={handleSaveClick}>
+                        {!props.hasId && <Button disabled={props.hasId} onClick={handleSaveClick}>
                             Save
-                        </Button>
+                        </Button>}
                     </Stack>
                 </Box>
 
