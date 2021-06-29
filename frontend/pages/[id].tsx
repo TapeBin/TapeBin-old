@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar";
 import Options from "../components/Options";
 import dynamic from "next/dynamic";
 import { GetServerSideProps } from "next";
-import { API_LINK } from "../utils/links";
 const DynamicEditor = dynamic(() => {
     return import("../components/Editor")
 }, { ssr: false });
