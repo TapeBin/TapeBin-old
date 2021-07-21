@@ -63,6 +63,10 @@ export const binAtom = atom({
     description: "",
     languageExtension: "bsl",
     languageId: 0,
+    bin: {
+      fileName: [""],
+      text: [""]
+    },
     fileName: "",
     text: [""]
 });

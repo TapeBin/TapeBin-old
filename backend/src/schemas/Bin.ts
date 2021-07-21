@@ -39,7 +39,7 @@ const bin = new mongoose.Schema({
 
     fileName: {
         required: false,
-        type: String
+        type: [String]
     },
 
     text: {
